@@ -1,0 +1,66 @@
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+PARENTS_CONTACT                TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+P_CONTACT                      VIEW                                             
+P_CONTACT_AB                   VIEW                                             
+V_RESULT                       VIEW                                             
+MATERIALS                      TABLE                                            
+MSALE                          TABLE                                            
+MARKS                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+MATERIAL                       TABLE                                            
+DEPARTMENT                     TABLE                                            
+PURCHES1                       TABLE                                            
+SALES                          TABLE                                            
+ACCOUNT                        TABLE                                            
+EMP                            TABLE                                            
+LIABRARY                       TABLE                                            
+DEPT                           TABLE                                            
+CUST                           TABLE                                            
+ORDERS2                        TABLE                                            
+ORDERS1                        TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+CUST1                          TABLE                                            
+
+23 rows selected.
+
+
+SQL> select * from orders2
+  2  ;
+
+       OID O_DATE       CUST_ID     AMOUNT                                      
+---------- --------- ---------- ----------                                      
+         1 21-DEC-21          1      20000                                      
+         2 21-DEC-21          2      45000                                      
+         3 21-DEC-21          2      55000                                      
+         4 21-DEC-21          3       5000                                      
+         5 21-DEC-21          1      33000                                      
+
+
+
+
+
+SQL> select o.oid,c.cust_id,o.amount from orders2 c join orders2 o
+  2  on o.oid=c.cust_id
+  3  ;
+
+       OID    CUST_ID     AMOUNT                                                
+---------- ---------- ----------                                                
+         1          1      20000                                                
+         1          1      20000                                                
+         2          2      45000                                                
+         2          2      45000                                                
+         3          3      55000                                                
+
+SQL> exit

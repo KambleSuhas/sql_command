@@ -1,0 +1,77 @@
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+PARENTS_CONTACT                TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+P_CONTACT                      VIEW                                             
+P_CONTACT_AB                   VIEW                                             
+V_RESULT                       VIEW                                             
+MATERIALS                      TABLE                                            
+MSALE                          TABLE                                            
+MARKS                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+MATERIAL                       TABLE                                            
+DEPARTMENT                     TABLE                                            
+PURCHES1                       TABLE                                            
+SALES                          TABLE                                            
+ACCOUNT                        TABLE                                            
+EMP                            TABLE                                            
+LIABRARY                       TABLE                                            
+DEPT                           TABLE                                            
+CUST                           TABLE                                            
+ORDERS2                        TABLE                                            
+ORDERS1                        TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+CUST1                          TABLE                                            
+INDEX_EXAMPLE                  TABLE                                            
+A                              TABLE                                            
+V_RESULT11                     VIEW                                             
+V_RESULT10                     VIEW                                             
+V_RESULT12                     VIEW                                             
+CUSTOMERS                      TABLE                                            
+
+29 rows selected.
+
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 amol                 pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               nagpur                                          
+         5 swapnil              nagar                                           
+         6                      pune                                            
+
+
+SQL> select * from student
+  2  where rno in(select rno from customers where address='pune')
+  3  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 amol                 pune                                            
+         6                      pune                                            
+
+SQL> select * from student
+  2  where rno not in(select rno from customers where address='pune')
+  3  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         2 uday                 kolhapur                                        
+         3 adarsh               nagpur                                          
+         5 swapnil              nagar                                           
+
+
+
+SQL> exit

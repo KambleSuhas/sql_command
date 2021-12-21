@@ -1,0 +1,92 @@
+
+SQL> create table emp
+  2  (
+  3  emp_no number(10),
+  4  emp_name varchar2(20),
+  5  address varchar2(20),
+  6  contatc_no number(15),
+  7  salary number(10)
+  8  )
+  9  ;
+
+Table created.
+
+SQL> desc emp
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_NO                                             NUMBER(10)
+ EMP_NAME                                           VARCHAR2(20)
+ ADDRESS                                            VARCHAR2(20)
+ CONTATC_NO                                         NUMBER(15)
+ SALARY                                             NUMBER(10)
+
+
+SQL> insert into emp values(&emp_no,'&emp_name','&address',&contact_no,&salary)
+  2  ;
+Enter value for emp_no: 1
+Enter value for emp_name: mayuri
+Enter value for address: solapur
+Enter value for contact_no: 4562135698
+Enter value for salary: 45123
+old   1: insert into emp values(&emp_no,'&emp_name','&address',&contact_no,&salary)
+new   1: insert into emp values(1,'mayuri','solapur',4562135698,45123)
+
+1 row created.
+
+SQL> /
+Enter value for emp_no: 2
+Enter value for emp_name: santosh
+Enter value for address: pune
+Enter value for contact_no: 3564589564
+Enter value for salary: 75000
+old   1: insert into emp values(&emp_no,'&emp_name','&address',&contact_no,&salary)
+new   1: insert into emp values(2,'santosh','pune',3564589564,75000)
+
+1 row created.
+
+SQL> /
+Enter value for emp_no: 3
+Enter value for emp_name: sagar
+Enter value for address: kolhapur
+Enter value for contact_no: 5214563289
+Enter value for salary: 65000
+old   1: insert into emp values(&emp_no,'&emp_name','&address',&contact_no,&salary)
+new   1: insert into emp values(3,'sagar','kolhapur',5214563289,65000)
+
+1 row created.
+
+SQL> select * from emp
+  2  ;
+
+    EMP_NO EMP_NAME             ADDRESS              CONTATC_NO     SALARY      
+---------- -------------------- -------------------- ---------- ----------      
+         1 mayuri               solapur              4562135698      45123      
+         2 santosh              pune                 3564589564      75000      
+         3 sagar                kolhapur             5214563289      65000      
+
+SQL> 
+SQL> delete from emp
+  2  where emp_no=2
+  3  ;
+
+1 row deleted.
+
+SQL> select * from  emp
+  2  ;
+
+    EMP_NO EMP_NAME             ADDRESS              CONTATC_NO     SALARY      
+---------- -------------------- -------------------- ---------- ----------      
+         1 mayuri               solapur              4562135698      45123      
+         3 sagar                kolhapur             5214563289      65000      
+
+SQL> delete from emp
+  2  ;
+
+2 rows deleted.
+
+SQL> select * from emp
+  2  ;
+
+no rows selected
+
+SQL> exit

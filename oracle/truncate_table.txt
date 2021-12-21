@@ -1,0 +1,215 @@
+
+SQL> create table liabrary
+  2  (
+  3  id number(10) constraint pk_id primary key,
+  4  b_name varchar2(20)
+  5  )
+  6  ;
+
+Table created.
+
+SQL> create table stud
+  2  (
+  3  s_id number(20)constraint pk_sid primary key,
+  4  b_id number(10)constraint fk_id references liabrary,
+  5  s_name varchar2(20)
+  6  )
+  7  ;
+
+Table created.
+
+SQL> insert into liabrary values(&id,'&b_name')
+  2  ;
+Enter value for id: 1
+Enter value for b_name: english
+old   1: insert into liabrary values(&id,'&b_name')
+new   1: insert into liabrary values(1,'english')
+
+1 row created.
+
+SQL> /
+Enter value for id: 2
+Enter value for b_name: hindi
+old   1: insert into liabrary values(&id,'&b_name')
+new   1: insert into liabrary values(2,'hindi')
+
+1 row created.
+
+SQL> /
+Enter value for id: 3
+Enter value for b_name: japanese
+old   1: insert into liabrary values(&id,'&b_name')
+new   1: insert into liabrary values(3,'japanese')
+
+1 row created.
+
+SQL> /
+Enter value for id: 4
+Enter value for b_name: chinese
+old   1: insert into liabrary values(&id,'&b_name')
+new   1: insert into liabrary values(4,'chinese')
+
+1 row created.
+
+SQL> insert into stud values(&s_id,&b_id,'&s_name')
+  2  ;
+Enter value for s_id: 1
+Enter value for b_id: 1
+Enter value for s_name: sushant
+old   1: insert into stud values(&s_id,&b_id,'&s_name')
+new   1: insert into stud values(1,1,'sushant')
+
+1 row created.
+
+SQL> /
+Enter value for s_id: 2
+Enter value for b_id: 1
+Enter value for s_name: rutuja
+old   1: insert into stud values(&s_id,&b_id,'&s_name')
+new   1: insert into stud values(2,1,'rutuja')
+
+1 row created.
+
+SQL> /
+Enter value for s_id: 3
+Enter value for b_id: 3
+Enter value for s_name: jhon
+old   1: insert into stud values(&s_id,&b_id,'&s_name')
+new   1: insert into stud values(3,3,'jhon')
+
+1 row created.
+
+SQL> /
+Enter value for s_id: 4
+Enter value for b_id: 4
+Enter value for s_name: minal
+old   1: insert into stud values(&s_id,&b_id,'&s_name')
+new   1: insert into stud values(4,4,'minal')
+
+1 row created.
+
+SQL> select * from liabrary
+  2  ;
+
+        ID B_NAME                                                               
+---------- --------------------                                                 
+         1 english                                                              
+         2 hindi                                                                
+         3 japanese                                                             
+         4 chinese                                                              
+
+SQL> select * from stud
+  2  ;
+
+      S_ID       B_ID S_NAME                                                    
+---------- ---------- --------------------                                      
+         1          1 sushant                                                   
+         2          1 rutuja                                                    
+         3          3 jhon                                                      
+         4          4 minal                                                     
+
+SQL> delete from liabrary
+  2  ;
+delete from liabrary
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (SUHAS.FK_ID) violated - child record found 
+
+
+SQL> drop table liabrary
+  2  ;
+drop table liabrary
+           *
+ERROR at line 1:
+ORA-02449: unique/primary keys in table referenced by foreign keys 
+
+
+SQL> truncate table liabrary
+  2  ;
+truncate table liabrary
+               *
+ERROR at line 1:
+ORA-02266: unique/primary keys in table referenced by enabled foreign keys 
+
+
+SQL> delete from stud
+  2  ;
+
+4 rows deleted.
+
+SQL> insert into stud values(&s_id,&b_id,'&s_name')
+  2  ;
+
+SQL> /
+Enter value for s_id: 1
+Enter value for b_id: 1
+Enter value for s_name: sushant
+old   1: insert into stud values(&s_id,&b_id,'&s_name')
+new   1: insert into stud values(1,1,'sushant')
+
+1 row created.
+
+SQL> /
+Enter value for s_id: 2
+Enter value for b_id: 2
+Enter value for s_name: rutuja
+old   1: insert into stud values(&s_id,&b_id,'&s_name')
+new   1: insert into stud values(2,2,'rutuja')
+
+1 row created.
+
+SQL> /
+Enter value for s_id: 3
+Enter value for b_id: 5
+Enter value for s_name: minal
+old   1: insert into stud values(&s_id,&b_id,'&s_name')
+new   1: insert into stud values(3,5,'minal')
+insert into stud values(3,5,'minal')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SUHAS.FK_ID) violated - parent key not found 
+
+
+SQL> truncate table stud
+  2  ;
+
+Table truncated.
+
+SQL> select * from stud
+  2  ;
+
+no rows selected
+
+SQL> insert into stud values(&s_id,&b_id,'&s_name')
+  2  ;
+Enter value for s_id: 1
+Enter value for b_id: 1
+Enter value for s_name: sushant
+old   1: insert into stud values(&s_id,&b_id,'&s_name')
+new   1: insert into stud values(1,1,'sushant')
+
+1 row created.
+
+SQL> /
+Enter value for s_id: 2
+Enter value for b_id: 2
+Enter value for s_name: rutuja
+old   1: insert into stud values(&s_id,&b_id,'&s_name')
+new   1: insert into stud values(2,2,'rutuja')
+
+1 row created.
+
+SQL> drop table stud
+  2  ;
+
+Table dropped.
+
+SQL> select * from stud
+  2  ;
+select * from stud
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> exit

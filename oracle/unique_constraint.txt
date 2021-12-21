@@ -1,0 +1,102 @@
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+PARENTS_CONTACT                TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+P_CONTACT                      VIEW                                             
+P_CONTACT_AB                   VIEW                                             
+V_RESULT                       VIEW                                             
+MATERIALS                      TABLE                                            
+MSALE                          TABLE                                            
+MARKS                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+MATERIAL                       TABLE                                            
+DEPARTMENT                     TABLE                                            
+PURCHES1                       TABLE                                            
+SALES                          TABLE                                            
+ACCOUNT                        TABLE                                            
+EMP                            TABLE                                            
+LIABRARY                       TABLE                                            
+DEPT                           TABLE                                            
+CUST                           TABLE                                            
+
+20 rows selected.
+
+SQL> create table orders
+  2  (
+  3  id number(10) unique,
+  4  cust_id number(10),
+  5  amount number(10)
+  6  )
+  7  ;
+
+Table created.
+
+SQL> insert into orders values(&id,&cust_id,&amount)
+  2  ;
+Enter value for id: 1
+Enter value for cust_id: 1
+Enter value for amount: 45000
+old   1: insert into orders values(&id,&cust_id,&amount)
+new   1: insert into orders values(1,1,45000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 2
+Enter value for cust_id: 2
+Enter value for amount: 12000
+old   1: insert into orders values(&id,&cust_id,&amount)
+new   1: insert into orders values(2,2,12000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 3
+Enter value for cust_id: 3
+Enter value for amount: 23000
+old   1: insert into orders values(&id,&cust_id,&amount)
+new   1: insert into orders values(3,3,23000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 3
+Enter value for cust_id: 4
+Enter value for amount: 15000
+old   1: insert into orders values(&id,&cust_id,&amount)
+new   1: insert into orders values(3,4,15000)
+insert into orders values(3,4,15000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SUHAS.SYS_C004190) violated 
+
+
+
+SQL> /
+Enter value for id: 4
+Enter value for cust_id: 4
+Enter value for amount: 7500
+old   1: insert into orders values(&id,&cust_id,&amount)
+new   1: insert into orders values(4,4,7500)
+
+1 row created.
+
+SQL> select * from orders
+  2  ;
+
+        ID    CUST_ID     AMOUNT                                                
+---------- ---------- ----------                                                
+         1          1      45000                                                
+         2          2      12000                                                
+         3          3      23000                                                
+         4          4       7500                                                
+
+SQL> exit

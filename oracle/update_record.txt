@@ -1,0 +1,71 @@
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 raj                  pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               satara                                          
+         4 sonali               mumbai                                          
+
+SQL> update student
+  2  set address='nagpur'
+  3  where rno=3
+  4  ;
+
+1 row updated.
+
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 raj                  pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               nagpur                                          
+         4 sonali               mumbai                                          
+
+
+SQL> update student
+  2  set stud_name='amol'
+  3  where address='pune'
+  4  ;
+
+1 row updated.
+
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 amol                 pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               nagpur                                          
+         4 sonali               mumbai                                          
+
+SQL> update student
+  2  set stud_name='mayuri',address='sangli'
+  3  where rno=4
+  4  ;
+
+1 row updated.
+
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 amol                 pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               nagpur                                          
+         4 mayuri               sangli                                          
+
+SQL> exit

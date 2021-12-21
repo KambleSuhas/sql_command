@@ -1,0 +1,27 @@
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+ITEM                           TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+
+SQL> rename item to materials
+  2  ;
+
+Table renamed.
+
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+MATERIALS                      TABLE                                            
+
+
+SQL> exit

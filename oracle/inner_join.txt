@@ -1,0 +1,161 @@
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+PARENTS_CONTACT                TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+P_CONTACT                      VIEW                                             
+P_CONTACT_AB                   VIEW                                             
+V_RESULT                       VIEW                                             
+MATERIALS                      TABLE                                            
+MSALE                          TABLE                                            
+MARKS                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+MATERIAL                       TABLE                                            
+DEPARTMENT                     TABLE                                            
+PURCHES1                       TABLE                                            
+SALES                          TABLE                                            
+ACCOUNT                        TABLE                                            
+EMP                            TABLE                                            
+LIABRARY                       TABLE                                            
+DEPT                           TABLE                                            
+CUST                           TABLE                                            
+ORDERS                         TABLE                                            
+ORDERS1                        TABLE                                            
+
+22 rows selected.
+
+SQL> create table cust1
+  2  (
+  3  id number(10),
+  4  name varchar2(20),
+  5  address varchar2(20),
+  6  salary number(10)
+  7  )
+  8  ;
+
+Table created.
+
+
+SQL> insert into cust1 values(&id,'&name','&address',&salary)
+  2  ;
+Enter value for id: 1
+Enter value for name: akash
+Enter value for address: sangli
+Enter value for salary: 59000
+old   1: insert into cust1 values(&id,'&name','&address',&salary)
+new   1: insert into cust1 values(1,'akash','sangli',59000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 2
+Enter value for name: shree
+Enter value for address: pune
+Enter value for salary: 56000
+old   1: insert into cust1 values(&id,'&name','&address',&salary)
+new   1: insert into cust1 values(2,'shree','pune',56000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 3
+Enter value for name: purvi
+Enter value for address: mumbai
+Enter value for salary: 45000
+old   1: insert into cust1 values(&id,'&name','&address',&salary)
+new   1: insert into cust1 values(3,'purvi','mumbai',45000)
+
+1 row created.
+
+
+SQL> create table orders2
+  2  (
+  3  oid number(10),
+  4  o_date date,
+  5  cust_id number(10),
+  6  amount number(10)
+  7  )
+  8  ;
+
+Table created.
+
+
+
+SQL> create table orders2
+  2  (
+  3  oid number(10),
+  4  o_date date,
+  5  cust_id number(10),
+  6  amount number(10)
+  7  )
+  8  ;
+
+Table created.
+
+
+
+SQL> insert into orders2 values(1,sysdate,1,20000)
+  2  ;
+
+1 row created.
+
+SQL> insert into orders2 values(2,sysdate,2,45000)
+  2  ;
+
+1 row created.
+
+SQL> insert into orders2 values(3,sysdate,2,55000)
+  2  ;
+
+1 row created.
+
+SQL> insert into orders2 values(4,sysdate,3,5000)
+  2  ;
+
+1 row created.
+
+SQL> insert into orders2 values(5,sysdate,1,33000)
+  2  ;
+
+1 row created.
+
+SQL> select * from orders2
+  2  ;
+
+       OID O_DATE       CUST_ID     AMOUNT                                      
+---------- --------- ---------- ----------                                      
+         1 21-DEC-21          1      20000                                      
+         2 21-DEC-21          2      45000                                      
+         3 21-DEC-21          2      55000                                      
+         4 21-DEC-21          3       5000                                      
+         5 21-DEC-21          1      33000                                      
+
+SQL> select * from cust1
+  2  ;
+
+        ID NAME                 ADDRESS                  SALARY                 
+---------- -------------------- -------------------- ----------                 
+         1 akash                sangli                    59000                 
+         2 shree                pune                      56000                 
+         3 purvi                mumbai                    45000                 
+
+SQL> select c.id,o.cust_id,c.name,o.amount from cust1 c inner join orders2 o
+  2  on c.id=o.cust_id
+  3  ;
+
+        ID    CUST_ID NAME                     AMOUNT                           
+---------- ---------- -------------------- ----------                           
+         1          1 akash                     20000                           
+         2          2 shree                     45000                           
+         2          2 shree                     55000                           
+         3          3 purvi                      5000                           
+         1          1 akash                     33000                           
+
+SQL> exit

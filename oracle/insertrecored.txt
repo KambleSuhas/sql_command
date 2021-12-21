@@ -1,0 +1,68 @@
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+
+SQL> desc student
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ RNO                                                NUMBER(10)
+ STUD_NAME                                          VARCHAR2(20)
+ ADDRESS                                            VARCHAR2(10)
+
+SQL> select * from student
+  2  ;
+
+no rows selected
+
+SQL> insert into student(rno,stud_name,address)
+  2  values(1,'raj','pune')
+  3  ;
+
+1 row created.
+
+SQL> insert into student values(2,'uday',''kolhapur')
+  2  ;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> insert into student values(2,'uday','kolhapur')
+  2  ;
+
+1 row created.
+
+SQL> insert into student values(&rno,'&stud_name','&address')
+  2  ;
+Enter value for rno: 3
+Enter value for stud_name: adarsh
+Enter value for address: satara
+old   1: insert into student values(&rno,'&stud_name','&address')
+new   1: insert into student values(3,'adarsh','satara')
+
+1 row created.
+
+SQL> /
+Enter value for rno: 4
+Enter value for stud_name: sonali
+Enter value for address: mumbai
+old   1: insert into student values(&rno,'&stud_name','&address')
+new   1: insert into student values(4,'sonali','mumbai')
+
+1 row created.
+
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 raj                  pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               satara                                          
+         4 sonali               mumbai                                          
+
+SQL> exit

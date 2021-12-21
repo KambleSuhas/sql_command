@@ -1,0 +1,112 @@
+SQL> select * rom tab
+  2  ;
+select * rom tab
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+PARENTS_CONTACT                TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+P_CONTACT                      VIEW                                             
+P_CONTACT_AB                   VIEW                                             
+V_RESULT                       VIEW                                             
+MATERIALS                      TABLE                                            
+MSALE                          TABLE                                            
+MARKS                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+MATERIAL                       TABLE                                            
+DEPARTMENT                     TABLE                                            
+PURCHES1                       TABLE                                            
+SALES                          TABLE                                            
+ACCOUNT                        TABLE                                            
+EMP                            TABLE                                            
+LIABRARY                       TABLE                                            
+
+18 rows selected.
+
+
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 amol                 pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               nagpur                                          
+         5 mangesh              nagar                                           
+
+SQL> select * from student
+  2  where rno=2
+  3  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         2 uday                 kolhapur                                        
+
+SQL> update student
+  2  set stud_name='swapnil'
+  3  where address='nagar'
+  4  ;
+
+1 row updated.
+
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 amol                 pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               nagpur                                          
+         5 swapnil              nagar                                           
+
+SQL> select * from account
+  2  ;
+
+     AC_NO NAME                 TYPE          BALANCE                           
+---------- -------------------- ---------- ----------                           
+         1 sudhakar patil       current         45000                           
+         2 mayur                saving          75000                           
+         3 shweta               saving          12000                           
+         4 monali               saving          55000                           
+         5 ramesh               current         60000                           
+         6 maniksha             saving          80000                           
+
+6 rows selected.
+
+SQL> select name,type,balance from account
+  2  where type='saving'
+  3  order by type
+  4  ;
+                                             
+
+NAME                 TYPE          BALANCE                                      
+-------------------- ---------- ----------                                      
+maniksha             saving          80000                                      
+mayur                saving          75000                                      
+monali               saving          55000                                      
+shweta               saving          12000                                      
+
+
+SQL> select type,sum(balance) from account
+  2  where balance>=50000
+  3  group by type
+  4  ;
+
+TYPE       SUM(BALANCE)                                                         
+---------- ------------                                                         
+current           60000                                                         
+saving           210000                                                         
+
+SQL> exit

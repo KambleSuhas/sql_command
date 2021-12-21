@@ -1,0 +1,55 @@
+
+SQL> create table dept
+  2  (
+  3  id number(10) not null,
+  4  name varchar2(20) not null
+  5  )
+  6  ;
+
+Table created.
+
+SQL> select * from dept
+  2  ;
+
+no rows selected
+
+SQL> insert into dept values(1,'sameer')
+  2  ;
+
+1 row created.
+
+SQL> insert into dept values(2,'pratiksha')
+  2  ;
+
+1 row created.
+
+SQL> insert into dept values(3,' ')
+  2  ;
+
+1 row created.
+
+SQL> insert into dept values(4,'swara ')
+  2  ;
+
+1 row created.
+
+SQL> select * from dept
+  2  ;
+
+        ID NAME                                                                 
+---------- --------------------                                                 
+         1 sameer                                                               
+         2 pratiksha                                                            
+         3                                                                      
+         4 swara                                                                
+
+
+SQL> insert into dept values(5,'')
+  2  ;
+insert into dept values(5,'')
+                          *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SUHAS"."DEPT"."NAME") 
+
+
+SQL> exit

@@ -1,0 +1,63 @@
+SQL> select * from employee
+  2  ;
+
+     EMPNO EMP_NAME             CITY                                            
+---------- -------------------- --------------------                            
+         1 sunil                pune                                            
+         2 sudhakar             satara                                          
+         3 mahesh               sangli                                          
+         4 akshay               nagar                                           
+
+SQL> select * from department
+  2  ;
+
+   DEPT_NO     EMP_NO DEPT_NAME                                                 
+---------- ---------- --------------------                                      
+         1          1 sale                                                      
+         2          2 production                                                
+         3          2 IT                                                        
+         4          4 sale                                                      
+
+SQL> alter table employee
+  2  modify empno number(10) constraint pk_empno primary key
+  3  ;
+
+Table altered.
+
+SQL> alter table department
+  2  modify emp_no number(10) constraint fk_empno references employee
+  3  ;
+
+Table altered.
+
+SQL> commit
+  2  ;
+
+Commit complete.
+
+SQL> delete from employee
+  2  where empno=1
+  3  ;
+delete from employee
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (SUHAS.FK_EMPNO) violated - child record found 
+
+
+SQL> create table a
+  2  (
+  3  id number(10) constraint pk_id1 primary key,
+  4  name varchar2(20)
+  5  )
+  6  ;
+
+Table created.
+
+SQL> alter table a
+  2  drop constraint pk_id1
+  3  ;
+
+Table altered.
+
+SQL> exit
+

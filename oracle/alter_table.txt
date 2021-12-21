@@ -1,0 +1,51 @@
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+ITEM                           TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+
+SQL> desc student
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ RNO                                                NUMBER(10)
+ STUD_NAME                                          VARCHAR2(20)
+ ADDRESS                                            VARCHAR2(20)
+
+SQL> alter table student
+  2  add contact_no number(20)
+  3  ;
+
+Table altered.
+
+SQL> desc student
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ RNO                                                NUMBER(10)
+ STUD_NAME                                          VARCHAR2(20)
+ ADDRESS                                            VARCHAR2(20)
+ CONTACT_NO                                         NUMBER(20)
+
+SQL> alter table student
+  2  drop column contact_no
+  3  ;
+
+Table altered.
+
+SQL> desc student
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ RNO                                                NUMBER(10)
+ STUD_NAME                                          VARCHAR2(20)
+ ADDRESS                                            VARCHAR2(20)
+
+SQL> alter table student
+  2  modify address varchar2(10)
+  3  ;
+
+Table altered.
+
+SQL> exit

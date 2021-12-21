@@ -1,0 +1,63 @@
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 amol                 pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               nagpur                                          
+         4 mayuri               sangli                                          
+
+SQL> select rno,name from student
+  2  ;
+select rno,name from student
+           *
+ERROR at line 1:
+ORA-00904: "NAME": invalid identifier 
+
+
+SQL> select rno,stud_name from student
+  2  ;
+
+       RNO STUD_NAME                                                            
+---------- --------------------                                                 
+         1 amol                                                                 
+         2 uday                                                                 
+         3 adarsh                                                               
+         4 mayuri                                                               
+
+SQL> select rno,stud_name from student
+  2  where address='pune'
+  3  ;
+
+       RNO STUD_NAME                                                            
+---------- --------------------                                                 
+         1 amol                                                                 
+
+SQL> select * from student
+  2  where stude_name='adarsh'
+  3  ;
+where stude_name='adarsh'
+      *
+ERROR at line 2:
+ORA-00904: "STUDE_NAME": invalid identifier 
+
+
+SQL> select * from student
+  2  where stud_name='adarsh'
+  3  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         3 adarsh               nagpur                                          
+
+SQL> exit

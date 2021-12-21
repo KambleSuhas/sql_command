@@ -1,0 +1,55 @@
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 amol                 pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               nagpur                                          
+         4 mayuri               sangli                                          
+         5 mangesh              nagar                                           
+         6 smita                buldhana                                        
+
+6 rows selected.
+
+SQL> select * from student
+  2  order by stud_name
+  3  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         3 adarsh               nagpur                                          
+         1 amol                 pune                                            
+         5 mangesh              nagar                                           
+         4 mayuri               sangli                                          
+         6 smita                buldhana                                        
+         2 uday                 kolhapur                                        
+
+6 rows selected.
+
+
+SQL> select * from student
+  2  order by stud_name desc
+  3  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         2 uday                 kolhapur                                        
+         6 smita                buldhana                                        
+         4 mayuri               sangli                                          
+         5 mangesh              nagar                                           
+         1 amol                 pune                                            
+         3 adarsh               nagpur                                          
+
+6 rows selected.
+
+SQL> exit

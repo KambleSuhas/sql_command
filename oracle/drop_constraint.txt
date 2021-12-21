@@ -1,0 +1,16 @@
+SQL> create table a
+  2  (
+  3  id number(10) constraint pk_id1 primary key,
+  4  name varchar2(20)
+  5  )
+  6  ;
+
+Table created.
+
+SQL> alter table a
+  2  drop constraint pk_id1
+  3  ;
+
+Table altered.
+
+SQL> exit

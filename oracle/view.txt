@@ -1,0 +1,125 @@
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 amol                 pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               nagpur                                          
+         4 mayuri               sangli                                          
+         5 mangesh              nagar                                           
+         6 smita                buldhana                                        
+
+6 rows selected.
+
+SQL> select * from marks
+  2  ;
+
+       RNO         M1         M2                                                
+---------- ---------- ----------                                                
+         1         89         90                                                
+         2         92         78                                                
+         3         88         67                                                
+         6         90         92                                                
+
+
+
+SQL> select s.rno,s.stud_name,m.m1,m.m2 from student s,marks m
+  2  where s.rno=m.rno
+  3  ;
+
+       RNO STUD_NAME                    M1         M2                           
+---------- -------------------- ---------- ----------                           
+         1 amol                         89         90                           
+         2 uday                         92         78                           
+         3 adarsh                       88         67                           
+         6 smita                        90         92                           
+
+SQL> create view v_result as
+  2  select s.rno,s.stud_name,m.m1,m.m2 from student s,marks m
+  3  where s.rno=m.rno
+  4  ;
+
+View created.
+
+SQL> select * from v_result
+  2  ;
+
+       RNO STUD_NAME                    M1         M2                           
+---------- -------------------- ---------- ----------                           
+         1 amol                         89         90                           
+         2 uday                         92         78                           
+         3 adarsh                       88         67                           
+         6 smita                        90         92          
+
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 amol                 pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               nagpur                                          
+         5 swapnil              nagar                                           
+
+
+                                       
+
+SQL> create view v_result10 as
+  2  select rno,stud_name from student
+  3  where rno in(1,3,5)
+  4  with check option
+  5  ;
+
+View created.
+
+SQL> select * from v_result10
+  2  ;
+
+       RNO STUD_NAME                                                            
+---------- --------------------                                                 
+         1 amol                                                                 
+         3 adarsh                                                               
+         5 swapnil                                                              
+
+
+SQL> create view v_result12 as
+  2  select rno,stud_name from student
+  3  where stud_name is not null
+  4  with check option
+  5  ;
+
+View created.
+
+SQL> insert into student values(6,'',''pune)
+  2  
+SQL> insert into student values(6,'','pune')
+  2  ;
+
+1 row created.
+
+SQL> select * from student
+  2  ;
+
+       RNO STUD_NAME            ADDRESS                                         
+---------- -------------------- ----------                                      
+         1 amol                 pune                                            
+         2 uday                 kolhapur                                        
+         3 adarsh               nagpur                                          
+         5 swapnil              nagar                                           
+         6                      pune                                            
+
+SQL> select * from v_result12
+  2  ;
+
+       RNO STUD_NAME                                                            
+---------- --------------------                                                 
+         1 amol                                                                 
+         2 uday                                                                 
+         3 adarsh                                                               
+         5 swapnil                                                              
+
+SQL> exit
+                 
+
+SQL> exit

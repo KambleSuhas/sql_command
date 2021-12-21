@@ -1,0 +1,216 @@
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+PARENTS_CONTACT                TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+P_CONTACT                      VIEW                                             
+P_CONTACT_AB                   VIEW                                             
+V_RESULT                       VIEW                                             
+MATERIALS                      TABLE                                            
+MSALE                          TABLE                                            
+MARKS                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+MATERIAL                       TABLE                                            
+DEPARTMENT                     TABLE                                            
+PURCHES1                       TABLE                                            
+SALES                          TABLE                                            
+ACCOUNT                        TABLE                                            
+EMP                            TABLE                                            
+LIABRARY                       TABLE                                            
+DEPT                           TABLE                                            
+CUST                           TABLE                                            
+ORDERS2                        TABLE                                            
+ORDERS1                        TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+CUST1                          TABLE                                            
+
+23 rows selected.
+
+SQL> create table index_example
+  2  (
+  3  id number(10),
+  4  cust_id number(10),
+  5  dept_id number(10),
+  6  name varchar2(20)
+  7  );
+
+Table created.
+
+
+SQL> desc index_example
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(10)
+ CUST_ID                                            NUMBER(10)
+ DEPT_ID                                            NUMBER(10)
+ NAME                                               VARCHAR2(20)
+
+   
+SQL> create index ind_1 on index_example (id)
+  2  ;
+
+Index created.
+
+SQL> insert into index_example values(&id,&cust_id,&dept_id,'&name')
+  2  ;
+Enter value for id: 1
+Enter value for cust_id: 1
+Enter value for dept_id: 1
+Enter value for name: sudhakar
+old   1: insert into index_example values(&id,&cust_id,&dept_id,'&name')
+new   1: insert into index_example values(1,1,1,'sudhakar')
+
+1 row created.
+
+SQL> /
+Enter value for id: 2
+Enter value for cust_id: 2
+Enter value for dept_id: 2
+Enter value for name: minal
+old   1: insert into index_example values(&id,&cust_id,&dept_id,'&name')
+new   1: insert into index_example values(2,2,2,'minal')
+
+1 row created.
+
+SQL> /
+Enter value for id: 2
+Enter value for cust_id: 3
+Enter value for dept_id: 3
+Enter value for name: radha
+old   1: insert into index_example values(&id,&cust_id,&dept_id,'&name')
+new   1: insert into index_example values(2,3,3,'radha')
+
+1 row created.
+
+SQL> select * from index_example
+  2  ;
+
+        ID    CUST_ID    DEPT_ID NAME                                           
+---------- ---------- ---------- --------------------                           
+         1          1          1 sudhakar                                       
+         2          2          2 minal                                          
+         2          3          3 radha                                          
+
+SQL> create unique index ind_2 on index_example (cust_id)
+  2  ;
+
+Index created.
+
+SQL> insert into index_example values(&id,&cust_id,&dept_id,'&name')
+  2  ;
+Enter value for id: 4
+Enter value for cust_id: 4
+Enter value for dept_id: 4
+Enter value for name: prajapati
+old   1: insert into index_example values(&id,&cust_id,&dept_id,'&name')
+new   1: insert into index_example values(4,4,4,'prajapati')
+
+1 row created.
+
+SQL> /
+Enter value for id: 5
+Enter value for cust_id: 5
+Enter value for dept_id: 5
+Enter value for name: swara
+old   1: insert into index_example values(&id,&cust_id,&dept_id,'&name')
+new   1: insert into index_example values(5,5,5,'swara')
+
+1 row created.
+
+SQL> /
+Enter value for id: 6
+Enter value for cust_id: 5
+Enter value for dept_id: 6
+Enter value for name: pooja
+old   1: insert into index_example values(&id,&cust_id,&dept_id,'&name')
+new   1: insert into index_example values(6,5,6,'pooja')
+insert into index_example values(6,5,6,'pooja')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SUHAS.IND_2) violated 
+
+
+SQL> select * from index_example
+  2  ;
+
+        ID    CUST_ID    DEPT_ID NAME                                           
+---------- ---------- ---------- --------------------                           
+         1          1          1 sudhakar                                       
+         2          2          2 minal                                          
+         2          3          3 radha                                          
+         4          4          4 prajapati                                      
+         5          5          5 swara                                          
+
+SQL> create index ind_3 on index_example(dept_id,name)
+  2  ;
+
+Index created.
+
+SQL> insert into index_example values(&id,&cust_id,&dept_id,'&name')
+  2  ;
+Enter value for id: 6
+Enter value for cust_id: 6
+Enter value for dept_id: 6
+Enter value for name: yami
+old   1: insert into index_example values(&id,&cust_id,&dept_id,'&name')
+new   1: insert into index_example values(6,6,6,'yami')
+
+1 row created.
+
+SQL> /
+Enter value for id: 7
+Enter value for cust_id: 7
+Enter value for dept_id: 7
+Enter value for name: urja
+old   1: insert into index_example values(&id,&cust_id,&dept_id,'&name')
+new   1: insert into index_example values(7,7,7,'urja')
+
+1 row created.
+
+SQL> /
+Enter value for id: 8
+Enter value for cust_id: 8
+Enter value for dept_id: 8
+Enter value for name: urja
+old   1: insert into index_example values(&id,&cust_id,&dept_id,'&name')
+new   1: insert into index_example values(8,8,8,'urja')
+
+1 row created.
+
+SQL> /
+Enter value for id: 9
+Enter value for cust_id: 9
+Enter value for dept_id: 8
+Enter value for name: urja
+old   1: insert into index_example values(&id,&cust_id,&dept_id,'&name')
+new   1: insert into index_example values(9,9,8,'urja')
+
+1 row created.
+
+SQL> select * from index_example
+  2  ;
+
+        ID    CUST_ID    DEPT_ID NAME                                           
+---------- ---------- ---------- --------------------                           
+         1          1          1 sudhakar                                       
+         2          2          2 minal                                          
+         2          3          3 radha                                          
+         4          4          4 prajapati                                      
+         5          5          5 swara                                          
+         6          6          6 yami                                           
+         7          7          7 urja                                           
+         8          8          8 urja                                           
+         9          9          8 urja                                           
+
+9 rows selected.
+
+SQL> exit

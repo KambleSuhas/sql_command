@@ -1,0 +1,77 @@
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+PARENTS_CONTACT                TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+P_CONTACT                      VIEW                                             
+P_CONTACT_AB                   VIEW                                             
+V_RESULT                       VIEW                                             
+MATERIALS                      TABLE                                            
+MSALE                          TABLE                                            
+MARKS                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+MATERIAL                       TABLE                                            
+DEPARTMENT                     TABLE                                            
+PURCHES1                       TABLE                                            
+SALES                          TABLE                                            
+ACCOUNT                        TABLE                                            
+EMP                            TABLE                                            
+LIABRARY                       TABLE                                            
+
+18 rows selected.
+
+SQL> select * from account
+  2  ;
+
+     AC_NO NAME                 TYPE          BALANCE                           
+---------- -------------------- ---------- ----------                           
+         1 sudhakar patil       current         45000                           
+         2 mayur                saving          75000                           
+         3 shweta               saving          12000                           
+         4 monali               saving          55000                           
+         5 ramesh               current         60000                           
+         6 maniksha             saving          80000                           
+
+6 rows selected.
+
+SQL> select * from account
+  2  where balance>30000 and type='current'
+  3  ;
+
+     AC_NO NAME                 TYPE          BALANCE                           
+---------- -------------------- ---------- ----------                           
+         1 sudhakar patil       current         45000                           
+         5 ramesh               current         60000                           
+
+SQL> select * from account
+  2  where balance=30000 and type='current'
+  3  ;
+
+no rows selected
+
+SQL> select * from account
+  2  where balance=30000 or type='current'
+  3  ;
+
+     AC_NO NAME                 TYPE          BALANCE                           
+---------- -------------------- ---------- ----------                           
+         1 sudhakar patil       current         45000                           
+         5 ramesh               current         60000                           
+
+SQL> select * from account
+  2  where balance=12000 or name='ramesh'
+  3  ;
+
+     AC_NO NAME                 TYPE          BALANCE                           
+---------- -------------------- ---------- ----------                           
+         3 shweta               saving          12000                           
+         5 ramesh               current         60000                           
+
+SQL> exit

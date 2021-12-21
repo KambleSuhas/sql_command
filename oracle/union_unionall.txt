@@ -1,0 +1,106 @@
+SQL> select * from tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STUDENT                        TABLE                                            
+PARENTS_CONTACT                TABLE                                            
+SALE                           TABLE                                            
+PURCHES                        TABLE                                            
+P_CONTACT                      VIEW                                             
+P_CONTACT_AB                   VIEW                                             
+V_RESULT                       VIEW                                             
+MATERIALS                      TABLE                                            
+MSALE                          TABLE                                            
+MARKS                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+MATERIAL                       TABLE                                            
+DEPARTMENT                     TABLE                                            
+PURCHES1                       TABLE                                            
+SALES                          TABLE                                            
+ACCOUNT                        TABLE                                            
+EMP                            TABLE                                            
+LIABRARY                       TABLE                                            
+DEPT                           TABLE                                            
+CUST                           TABLE                                            
+ORDERS2                        TABLE                                            
+ORDERS1                        TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+CUST1                          TABLE                                            
+
+23 rows selected.
+
+SQL> select * from cust1
+  2  ;
+
+        ID NAME                 ADDRESS                  SALARY                 
+---------- -------------------- -------------------- ----------                 
+         1 akash                sangli                    59000                 
+         2 shree                pune                      56000                 
+         3 purvi                mumbai                    45000                 
+         4 sakshi               kolhapur                  59000                 
+         5 radha                mumbai                    45000                 
+
+SQL> select * from orders2
+  2  ;
+
+       OID O_DATE       CUST_ID     AMOUNT                                      
+---------- --------- ---------- ----------                                      
+         1 21-DEC-21          1      20000                                      
+         2 21-DEC-21          2      45000                                      
+         3 21-DEC-21          2      55000                                      
+         4 21-DEC-21          3       5000                                      
+         5 21-DEC-21          1      33000                                      
+
+SQL> select id,cust_id,name,address,amount from cust1 left join orders2
+  2  on cust1.id=orders2.cust_id
+  3  union
+  4  select id,cust_id,name,address,amount from cust1 right join orders2
+  5  on cust1.id=orders2.cust_id
+  6  ;
+
+        ID    CUST_ID NAME                 ADDRESS                  AMOUNT      
+---------- ---------- -------------------- -------------------- ----------      
+         1          1 akash                sangli                    20000      
+         1          1 akash                sangli                    33000      
+         2          2 shree                pune                      45000      
+         2          2 shree                pune                      55000      
+         3          3 purvi                mumbai                     5000      
+         4            sakshi               kolhapur                             
+         5            radha                mumbai                               
+
+7 rows selected.
+
+SQL> select id,cust_id,name,address,amount from cust1 left join orders2
+  2  on cust1.id=orders2.cust_id
+  3  union all
+  4  select id,cust_id,name,address,amount from cust1 right join orders2
+  5  on cust1.id=orders2.cust_id
+  6  ;
+
+        ID    CUST_ID NAME                 ADDRESS                  AMOUNT      
+---------- ---------- -------------------- -------------------- ----------      
+         1          1 akash                sangli                    20000      
+         2          2 shree                pune                      45000      
+         2          2 shree                pune                      55000      
+         3          3 purvi                mumbai                     5000      
+         1          1 akash                sangli                    33000      
+         5            radha                mumbai                               
+         4            sakshi               kolhapur                             
+         1          1 akash                sangli                    33000      
+         1          1 akash                sangli                    20000      
+         2          2 shree                pune                      55000      
+         2          2 shree                pune                      45000      
+
+        ID    CUST_ID NAME                 ADDRESS                  AMOUNT      
+---------- ---------- -------------------- -------------------- ----------      
+         3          3 purvi                mumbai                     5000      
+
+12 rows selected.
+
+SQL> exit

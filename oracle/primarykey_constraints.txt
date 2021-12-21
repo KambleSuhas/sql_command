@@ -1,0 +1,173 @@
+
+SQL> create table materials
+  2  (
+  3  mcode number(10)constraints pk_mcode primary key,
+  4  mname varchar(20),rate number(10)
+  5  );
+
+Table created.
+
+SQL> create table msale
+  2  (
+  3  mcode number(10) constraints fk_mcode references materials,
+  4  qty number(10)
+  5  );
+
+Table created.
+
+SQL> desc materials
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MCODE                                     NOT NULL NUMBER(10)
+ MNAME                                              VARCHAR2(20)
+ RATE                                               NUMBER(10)
+
+SQL> desc msale
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MCODE                                              NUMBER(10)
+ QTY                                                NUMBER(10)
+
+SQL> insert into materials values(&mcode,'&mname',&rate)
+  2  ;
+Enter value for mcode: 1
+Enter value for mname: laptop
+Enter value for rate: 30000
+old   1: insert into materials values(&mcode,'&mname',&rate)
+new   1: insert into materials values(1,'laptop',30000)
+
+1 row created.
+
+SQL> /
+Enter value for mcode: 2
+Enter value for mname: notebook
+Enter value for rate: 50
+old   1: insert into materials values(&mcode,'&mname',&rate)
+new   1: insert into materials values(2,'notebook',50)
+
+1 row created.
+
+SQL> /
+Enter value for mcode: 3
+Enter value for mname: pen
+Enter value for rate: 20
+old   1: insert into materials values(&mcode,'&mname',&rate)
+new   1: insert into materials values(3,'pen',20)
+
+1 row created.
+
+SQL> insert into msale values(&mcode,&qty)
+  2  
+SQL> ;
+  1* insert into msale values(&mcode,&qty)
+SQL> insert into msale values(&mcode,&qty)
+  2  ;
+Enter value for mcode: 1
+Enter value for qty: 15
+old   1: insert into msale values(&mcode,&qty)
+new   1: insert into msale values(1,15)
+
+1 row created.
+
+SQL> /
+Enter value for mcode: 2
+Enter value for qty: 250
+old   1: insert into msale values(&mcode,&qty)
+new   1: insert into msale values(2,250)
+
+1 row created.
+
+SQL> /3
+Enter value for mcode: 3
+Enter value for qty: 300
+old   1: insert into msale values(&mcode,&qty)
+new   1: insert into msale values(3,300)
+
+1 row created.
+
+SQL> select * from materials
+  2  ;
+
+     MCODE MNAME                      RATE                                      
+---------- -------------------- ----------                                      
+         1 laptop                    30000                                      
+         2 notebook                     50                                      
+         3 pen                          20                                      
+
+SQL> select * from msale
+  2  ;
+
+     MCODE        QTY                                                           
+---------- ----------                                                           
+         1         15                                                           
+         2        250                                                           
+         3        300                                                           
+
+SQL> insert into materials values(&mcode,'&mname',&rate)
+  2  ;
+Enter value for mcode: 4
+Enter value for mname: keyboard
+Enter value for rate: 550
+old   1: insert into materials values(&mcode,'&mname',&rate)
+new   1: insert into materials values(4,'keyboard',550)
+
+1 row created.
+
+SQL> select * from materials
+  2  ;
+
+     MCODE MNAME                      RATE                                      
+---------- -------------------- ----------                                      
+         1 laptop                    30000                                      
+         2 notebook                     50                                      
+         3 pen                          20                                      
+         4 keyboard                    550                                      
+
+SQL> delete from materials
+  2  where mcode=3
+  3  ;
+delete from materials
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (SUHAS.FK_MCODE) violated - child record found 
+
+
+SQL> select * from msale
+  2  ;
+
+     MCODE        QTY                                                           
+---------- ----------                                                           
+         1         15                                                           
+         2        250                                                           
+         3        300                                                           
+
+SQL> delete from msale
+  2  where mcode=3
+  3  ;
+
+1 row deleted.
+
+SQL> select * from msale
+  2  ;
+
+     MCODE        QTY                                                           
+---------- ----------                                                           
+         1         15                                                           
+         2        250                                                           
+
+SQL> delete from materials
+  2  where mcode=3
+  3  ;
+
+1 row deleted.
+
+SQL> select * from materials
+  2  ;
+
+     MCODE MNAME                      RATE                                      
+---------- -------------------- ----------                                      
+         1 laptop                    30000                                      
+         2 notebook                     50                                      
+         4 keyboard                    550                                      
+
+SQL> exit

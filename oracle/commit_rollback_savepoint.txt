@@ -1,0 +1,134 @@
+SQL> create table customers
+  2  (
+  3  id number(10),
+  4  name varchar2(20),
+  5  salary number(10)
+  6  );
+
+Table created.
+
+SQL> insert into customers
+  2  values(&id,'&name',&salary)
+  3  ;
+Enter value for id: 1
+Enter value for name: amol
+Enter value for salary: 25000
+old   2: values(&id,'&name',&salary)
+new   2: values(1,'amol',25000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 2
+Enter value for name: swapnil
+Enter value for salary: 78000
+old   2: values(&id,'&name',&salary)
+new   2: values(2,'swapnil',78000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 3
+Enter value for name: rutuja
+Enter value for salary: 45000
+old   2: values(&id,'&name',&salary)
+new   2: values(3,'rutuja',45000)
+
+1 row created.
+
+SQL> select * from customers
+  2  ;
+
+        ID NAME                     SALARY                                      
+---------- -------------------- ----------                                      
+         1 amol                      25000                                      
+         2 swapnil                   78000                                      
+         3 rutuja                    45000                                      
+
+SQL> delete from customers
+  2  where id=3
+  3  ;
+
+1 row deleted.
+
+SQL> commit
+  2  ;
+
+Commit complete.
+
+
+
+SQL> select * from customers
+  2  ;
+
+        ID NAME                     SALARY                                      
+---------- -------------------- ----------                                      
+         1 amol                      25000                                      
+         2 swapnil                   78000                                      
+
+SQL> delete from customers
+  2  where id=2
+  3  ;
+
+SQL> select * from customers
+  2  ;
+
+        ID NAME                     SALARY                                      
+---------- -------------------- ----------                                      
+         1 amol                      25000                                      
+        
+1 row deleted.
+
+SQL> rollback
+  2  ;
+
+Rollback complete.
+
+SQL> select * from customers
+  2  ;
+
+        ID NAME                     SALARY                                      
+---------- -------------------- ----------                                      
+         1 amol                      25000                                      
+         2 swapnil                   78000                                      
+
+SQL> savepoint savepoint_a
+  2  ;
+
+Savepoint created.
+
+SQL> insert into customers
+  2  values(&id,'&name',&salary)
+  3  ;
+Enter value for id: 4
+Enter value for name: riya
+Enter value for salary: 43000
+old   2: values(&id,'&name',&salary)
+new   2: values(4,'riya',43000)
+
+1 row created.
+
+SQL> select * from customers
+  2  ;
+
+        ID NAME                     SALARY                                      
+---------- -------------------- ----------                                      
+         1 amol                      25000                                      
+         2 swapnil                   78000                                      
+         4 riya                      43000                                      
+
+
+SQL> rollback to savepoint_a
+  2  ;
+
+Rollback complete.
+
+SQL> select * from customers
+  2  ;
+
+        ID NAME                     SALARY                                      
+---------- -------------------- ----------                                      
+         1 amol                      25000                                      
+         2 swapnil                   78000                                      
+
+SQL> exit

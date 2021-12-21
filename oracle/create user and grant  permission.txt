@@ -1,0 +1,27 @@
+SQL> create user suhas identified by suhas123
+  2  ;
+
+User created.
+
+SQL> grant dba to suhas
+  2  ;
+
+Grant succeeded.
+
+SQL> grant unlimited tablespace to suhas
+  2  ;
+
+Grant succeeded.
+
+SQL> commit
+  2  ;
+
+Commit complete.
+
+SQL> conn suhas
+Connected.
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> exit

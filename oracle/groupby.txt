@@ -1,0 +1,126 @@
+SQL> create table account
+  2  (
+  3  ac_no number(10),
+  4  name varchar2(20),
+  5  type varchar2(10),
+  6  balance number(10)
+  7  )
+  8  ;
+
+Table created.
+
+SQL> insert into account values(&ac_no,'&name','&type',&balance)
+  2  ;
+Enter value for ac_no: 001
+Enter value for name: sudhakar patil
+Enter value for type: current
+Enter value for balance: 45000
+old   1: insert into account values(&ac_no,'&name','&type',&balance)
+new   1: insert into account values(001,'sudhakar patil','current',45000)
+
+1 row created.
+
+SQL> /
+Enter value for ac_no: 002
+Enter value for name: mayur
+Enter value for type: saving
+Enter value for balance: 75000
+old   1: insert into account values(&ac_no,'&name','&type',&balance)
+new   1: insert into account values(002,'mayur','saving',75000)
+
+1 row created.
+
+SQL> /
+Enter value for ac_no: 003
+Enter value for name: shweta
+Enter value for type: saving
+Enter value for balance: 12000
+old   1: insert into account values(&ac_no,'&name','&type',&balance)
+new   1: insert into account values(003,'shweta','saving',12000)
+
+1 row created.
+
+SQL> /
+Enter value for ac_no: 004
+Enter value for name: monali
+Enter value for type: saving
+Enter value for balance: 55000
+old   1: insert into account values(&ac_no,'&name','&type',&balance)
+new   1: insert into account values(004,'monali','saving',55000)
+
+1 row created.
+
+SQL> /
+Enter value for ac_no: 005
+Enter value for name: ramesh
+Enter value for type: current
+Enter value for balance: 60000
+old   1: insert into account values(&ac_no,'&name','&type',&balance)
+new   1: insert into account values(005,'ramesh','current',60000)
+
+1 row created.
+
+SQL> /
+Enter value for ac_no: 006
+Enter value for name: maniksha
+Enter value for type: saving
+Enter value for balance: 80000
+old   1: insert into account values(&ac_no,'&name','&type',&balance)
+new   1: insert into account values(006,'maniksha','saving',80000)
+
+1 row created.
+
+SQL> select * from account
+  2  ;
+
+     AC_NO NAME                 TYPE          BALANCE                           
+---------- -------------------- ---------- ----------                           
+         1 sudhakar patil       current         45000                           
+         2 mayur                saving          75000                           
+         3 shweta               saving          12000                           
+         4 monali               saving          55000                           
+         5 ramesh               current         60000                           
+         6 maniksha             saving          80000                           
+
+6 rows selected.
+
+SQL> select type,sum(balance) from account
+  2  group by type
+  3  ;
+
+TYPE       SUM(BALANCE)                                                         
+---------- ------------                                                         
+current          105000                                                         
+saving           222000                                                         
+
+SQL> select type,count(type) from account
+  2  group by type
+  3  ;
+
+TYPE       COUNT(TYPE)                                                          
+---------- -----------                                                          
+current              2                                                          
+saving               4                                                          
+
+
+SQL> select type,count(type)as a from account
+  2  group by type
+  3  having count(type) > 2
+  4  ;
+
+TYPE                A                                                           
+---------- ----------                                                           
+saving              4                                                           
+
+
+SQL> select type,sum(balance)as a from account
+  2  group by type
+  3  having count(type) > 2
+  4  ;
+
+TYPE                A                                                           
+---------- ----------                                                           
+saving         222000                                                           
+
+
+SQL> exit

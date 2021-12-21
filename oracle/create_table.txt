@@ -1,0 +1,48 @@
+SQL> create table student
+  2  (
+  3  rno number(10),
+  4  stud_name varchar2(20),
+  5  address varchar2(20)
+  6  );
+
+Table created.
+
+SQL> create tabe item
+  2  (
+  3  item_no number(10),
+  4  item_name varchar2(20),
+  5  item_price number(3,2)
+  6  );
+
+SQL> create table item
+  2  (
+  3  item_no number(10),
+  4  item_name varchar2(20),
+  5  item_price number(3,2)
+  6  );
+
+Table created.
+
+SQL> create table sale
+  2  (
+  3  sale_no number(10),
+  4  cust_name varchar2(20),
+  5  item_no number(10),
+  6  quantity number(10),
+  7  rate number(4,2)
+  8  );
+
+Table created.
+
+SQL> create table purches
+  2  (
+  3  puches number(10),
+  4  supplier_name varchar(20),
+  5  item_no number(10),
+  6  quantity number(10),
+  7  amount number(10)
+  8  );
+
+Table created.
+
+SQL> exit
